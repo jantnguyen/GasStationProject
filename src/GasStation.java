@@ -46,15 +46,23 @@ public class GasStation {
 				Double gallons;
 				try {
 					gallons = Double.parseDouble(bufferedReader.readLine());
+					if (gallons > 35) {
+						System.out.println("Oops!!! Max amount is 35 gallons. Put your amount again!");
+						gallons = Double.parseDouble(bufferedReader.readLine());
+					}
+					
 				    System.out.println(gallons + " gallons is being filled...");
 				    System.out.println("Here is your receipt. Thank you!");
-				    double subTotal = gallons * gasPrices.get(gasType);
+				    double subTotal = gallons * gasPrices.get(gasType) ;
+				    String subTotalString = String.format("%.4g%n", subTotal);
 				    double tax = 0.08 * subTotal;
+				    String taxString = String.format("%.3g%n", tax);
 				    double total = subTotal + tax;
+				    String totalString = String.format("%.4g%n", total);
 				    
-				    System.out.println("Subtotal: " + subTotal);
-				    System.out.println("Tax: " + tax);
-				    System.out.println("Total: " + total);
+				    System.out.println("Subtotal: $" + subTotalString);
+				    System.out.println("Tax: $" + taxString);
+				    System.out.println("Total: $" + totalString);
 				    
 				} catch (IOException e) {
 					e.printStackTrace();
