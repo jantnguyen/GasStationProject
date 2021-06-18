@@ -20,22 +20,29 @@ public class GasStation {
 			
 			System.out.println("You are at Station: " + station);
 			
-			// Enter the gas types
-			HashMap<String, Double> gasPrices = new HashMap<String, Double>();
-			gasPrices.put("unleaded", 2.59);
-			gasPrices.put("plus", 3.59);
-			gasPrices.put("premium", 4.59);
-			
-			System.out.println("Please select the type of gas!");
-			System.out.println(gasPrices);
-		
-		    String gasType;
+			//List types of gas
+			HashMap<Integer, Double> gasPrices = new HashMap<Integer, Double>();
+			gasPrices.put(3, 4.59);
+			gasPrices.put(2, 3.59);
+			gasPrices.put(1, 2.59);
+						
+			System.out.println("Please select the number of the type of gas you want:");
+			System.out.println("1. Unleaded - $2.59/gl");
+			System.out.println("2. Plus - $3.59/gl");
+			System.out.println("3. Premium - $4.59/gl");
+//			System.out.println(gasPrices);
+			// Enter the gas types			
+			Integer gasType;
 			try {
-				gasType = bufferedReader.readLine();
-			    System.out.println("You selected: " + gasType);
-			    System.out.println("Please enter the amount of gas you want!");
+				gasType = Integer.parseInt(bufferedReader.readLine()); 
+				if (gasType < 1  || gasType > 3) {	 		
+					System.out.println("Invalid input. The options are: 1 - unleaded, 2 - plus, 3 - premium");
+					gasType = Integer.parseInt(bufferedReader.readLine());				
+				}
+			    System.out.println("You selected: " + gasType);		     
 			    
 				// Enter the amount of gas
+			    System.out.println("Please enter the amount of gas you want! Maximum amount is 35 gl");
 				Double gallons;
 				try {
 					gallons = Double.parseDouble(bufferedReader.readLine());
@@ -60,15 +67,5 @@ public class GasStation {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}   
-		
-		
-		
- 
 	}
-
-	
-	 
-			 
-	
-
 }
